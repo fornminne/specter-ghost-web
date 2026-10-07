@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "slug": "cipher-cellar",
+  "title": "Cipher Cellar",
+  "category": "Crypto",
+  "difficulty": "Insane",
+  "points": 900,
+  "description": "Analyze a deliberately flawed training cryptosystem.",
+  "objectives": [
+    "Inspect the supplied isolated training evidence.",
+    "Recover and submit the challenge flag."
+  ],
+  "skills": [
+    "Crypto",
+    "Encoding",
+    "Analysis"
+  ],
+  "target": {
+    "kind": "static",
+    "ttlMinutes": 30,
+    "network": "none"
+  },
+  "flag": {
+    "algorithm": "sha256",
+    "digest": "82e0d51eee24c72fda159579574e12793f3a4bb452a3bdc867a5ccee8ed6d83c"
+  }
+}

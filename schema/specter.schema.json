@@ -1,0 +1,32 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://specterghost.com/schema/specter.schema.json",
+  "title":"SPECTER.GHOST Challenge Manifest",
+  "type":"object",
+  "required":["version","slug","title","category","difficulty","points","description","objectives","target","flag"],
+  "properties":{
+    "version":{"const":1},
+    "slug":{"type":"string","pattern":"^[a-z0-9-]+$"},
+    "title":{"type":"string","minLength":3},
+    "category":{"enum":["Web","API","Network","Forensics","AI Security","Crypto","Linux","Reverse Engineering"]},
+    "difficulty":{"enum":["Easy","Medium","Hard","Insane"]},
+    "points":{"type":"integer","minimum":25,"maximum":5000},
+    "description":{"type":"string"},
+    "objectives":{"type":"array","minItems":1,"items":{"type":"string"}},
+    "skills":{"type":"array","items":{"type":"string"}},
+    "target":{
+      "type":"object",
+      "required":["kind","ttlMinutes","network"],
+      "properties":{
+        "kind":{"enum":["static","container","vm"]},
+        "image":{"type":"string"},
+        "port":{"type":"integer","minimum":1,"maximum":65535},
+        "ttlMinutes":{"type":"integer","minimum":5,"maximum":240},
+        "network":{"enum":["none","isolated"]}
+      },
+      "additionalProperties":false
+    },
+    "flag":{"type":"object","required":["algorithm","digest"],"properties":{"algorithm":{"const":"sha256"},"digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}},"additionalProperties":false}
+  },
+  "additionalProperties":false
+}

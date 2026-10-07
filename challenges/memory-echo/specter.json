@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "slug": "memory-echo",
+  "title": "Memory Echo",
+  "category": "Forensics",
+  "difficulty": "Hard",
+  "points": 500,
+  "description": "Reconstruct a controlled incident from process, shell, and filesystem artifacts.",
+  "objectives": [
+    "Inspect the supplied isolated training evidence.",
+    "Recover and submit the challenge flag."
+  ],
+  "skills": [
+    "Forensics",
+    "Linux",
+    "Timeline"
+  ],
+  "target": {
+    "kind": "static",
+    "ttlMinutes": 30,
+    "network": "none"
+  },
+  "flag": {
+    "algorithm": "sha256",
+    "digest": "f65da56c4d52485f8d7a93b7747179d4c3201405899df71f088d64bc3b0bfe4f"
+  }
+}

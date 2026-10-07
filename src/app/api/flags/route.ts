@@ -1,0 +1,4 @@
+import {challengeDigests} from '@/lib/challengeDigests';
+export const runtime='nodejs';
+async function sha256(value:string){const data=new TextEncoder().encode(value);const digest=await crypto.subtle.digest('SHA-256',data);return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,'0')).join('')}
+export async function POST(req:Request){try{const {slug,flag}=await req.json();if(typeof slug!=='string'||typeof flag!=='string'||flag.length>256)return Response.json({ok:false,error:'invalid request'},{status:400});const expected=challengeDigests[slug];if(!expected)return Response.json({ok:false,error:'unknown challenge'},{status:404});const actual=await sha256(flag.trim());return Response.json({ok:actual===expected});}catch{return Response.json({ok:false,error:'invalid json'},{status:400})}}

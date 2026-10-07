@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "slug": "phantom-packet",
+  "title": "Phantom Packet",
+  "category": "Network",
+  "difficulty": "Medium",
+  "points": 300,
+  "description": "Analyze isolated packet evidence and identify the anomalous service.",
+  "objectives": [
+    "Inspect the supplied isolated training evidence.",
+    "Recover and submit the challenge flag."
+  ],
+  "skills": [
+    "TCP/IP",
+    "PCAP",
+    "DNS"
+  ],
+  "target": {
+    "kind": "static",
+    "ttlMinutes": 30,
+    "network": "none"
+  },
+  "flag": {
+    "algorithm": "sha256",
+    "digest": "f095e2eb16beeebd82f379f0cd1547143bc45a0091e6ba3a5013c30f699e6eb6"
+  }
+}

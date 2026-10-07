@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "slug": "prompt-phantom",
+  "title": "Prompt Phantom",
+  "category": "AI Security",
+  "difficulty": "Hard",
+  "points": 550,
+  "description": "Audit a simulated agent boundary for unsafe tool-routing behavior.",
+  "objectives": [
+    "Inspect the supplied isolated training evidence.",
+    "Recover and submit the challenge flag."
+  ],
+  "skills": [
+    "AI",
+    "Prompt Injection",
+    "Tool Isolation"
+  ],
+  "target": {
+    "kind": "static",
+    "ttlMinutes": 30,
+    "network": "none"
+  },
+  "flag": {
+    "algorithm": "sha256",
+    "digest": "e2e9db9d2221f7f57e3d957c5464e21c1dc1ff126dfbaae645d6348432841fc3"
+  }
+}

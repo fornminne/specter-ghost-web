@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "slug": "broken-trust",
+  "title": "Broken Trust",
+  "category": "API",
+  "difficulty": "Medium",
+  "points": 250,
+  "description": "Trace an authorization failure through a synthetic multi-tenant API.",
+  "objectives": [
+    "Inspect the supplied isolated training evidence.",
+    "Recover and submit the challenge flag."
+  ],
+  "skills": [
+    "API",
+    "Authorization",
+    "JSON"
+  ],
+  "target": {
+    "kind": "static",
+    "ttlMinutes": 30,
+    "network": "none"
+  },
+  "flag": {
+    "algorithm": "sha256",
+    "digest": "880bb0bf4fe2fc0c939cd620949043e6aafef6d98047356a3d6a291a6f362750"
+  }
+}

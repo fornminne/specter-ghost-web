@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "slug": "ghost-protocol",
+  "title": "Ghost Protocol",
+  "category": "Web",
+  "difficulty": "Easy",
+  "points": 100,
+  "description": "Map a deliberately vulnerable training service and identify exposed metadata.",
+  "objectives": [
+    "Inspect the supplied isolated training evidence.",
+    "Recover and submit the challenge flag."
+  ],
+  "skills": [
+    "HTTP",
+    "Recon",
+    "Headers"
+  ],
+  "target": {
+    "kind": "static",
+    "ttlMinutes": 30,
+    "network": "none"
+  },
+  "flag": {
+    "algorithm": "sha256",
+    "digest": "55548e512d044d4524f116241fe112a7e4089f36ce3bfec71289da73122acc90"
+  }
+}
