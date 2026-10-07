@@ -1,0 +1,5 @@
+const RANGE_URL=process.env.SPECTER_RANGE_URL;
+const TOKEN=process.env.SPECTER_RANGE_TOKEN;
+function unavailable(){return Response.json({ok:false,mode:'catalog',error:'Range controller is not configured on this deployment.'},{status:503})}
+export async function POST(req:Request){if(!RANGE_URL)return unavailable();const body=await req.text();const r=await fetch(RANGE_URL+'/v1/instances',{method:'POST',headers:{'content-type':'application/json',...(TOKEN?{'authorization':'Bearer '+TOKEN}:{})},body,cache:'no-store'});return new Response(await r.text(),{status:r.status,headers:{'content-type':'application/json'}})}
+export async function DELETE(req:Request){if(!RANGE_URL)return unavailable();const {searchParams}=new URL(req.url);const id=searchParams.get('id');if(!id||!/^sg-[a-f0-9]{12}$/.test(id))return Response.json({error:'invalid instance id'},{status:400});const r=await fetch(RANGE_URL+'/v1/instances/'+id,{method:'DELETE',headers:{...(TOKEN?{'authorization':'Bearer '+TOKEN}:{})},cache:'no-store'});return new Response(await r.text(),{status:r.status,headers:{'content-type':'application/json'}})}
