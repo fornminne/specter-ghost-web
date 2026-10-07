@@ -1,0 +1,1 @@
+import {notFound} from 'next/navigation';import {labs} from '@/lib/labs';import LabView from '@/components/LabView';export function generateStaticParams(){return labs.map(l=>({slug:l.slug}))}export default function Page({params}:{params:{slug:string}}){const lab=labs.find(l=>l.slug===params.slug);if(!lab)notFound();return <LabView lab={lab}/>};

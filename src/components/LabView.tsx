@@ -1,0 +1,9 @@
+'use client';import Link from 'next/link';import {useEffect,useState} from 'react';import type {Lab} from '@/lib/labs';import {CheckCircle2,ChevronLeft,Flag,Terminal} from 'lucide-react';
+export default function LabView({lab}:{lab:Lab}){const key='sg-solved-'+lab.slug;const [flag,setFlag]=useState('');const [msg,setMsg]=useState('');const [solved,setSolved]=useState(false);useEffect(()=>setSolved(localStorage.getItem(key)==='1'),[key]);function submit(e:any){e.preventDefault();if(flag.trim()===lab.flag){localStorage.setItem(key,'1');setSolved(true);setMsg('FLAG ACCEPTED // '+lab.points+' POINTS');}else setMsg('FLAG REJECTED // inspect the evidence and try again');}return <main className='labPage'><Link className='back' href='/#labs'><ChevronLeft size={16}/> RETURN TO RANGE</Link><div className='labHero'><span className='category'>{lab.category}</span><h1>{lab.title}</h1><p>{lab.description}</p><div className='skills'>{lab.skills.map(x=><span key={x}>{x}</span>)}</div></div><div className='labLayout'><section className='brief'><span className='kicker'>// MISSION BRIEF</span><h2>SCENARIO</h2><p>{lab.brief}</p><h2>OBJECTIVE</h2><p>{lab.objective}</p><div className='evidence'><Terminal/><div><b>SIMULATED TARGET CONSOLE</b><code>$ target status
+service: training-{lab.slug}
+network: isolated
+telemetry: enabled
+external_targets: denied
+
+$ hint
+Start with the concepts tagged above. The public app contains no intentionally exploitable production service.</code></div></div></section><aside><div className='sidebox'><span>DIFFICULTY</span><b>{lab.difficulty}</b><span>REWARD</span><b>{lab.points} PTS</b><span>EST. TIME</span><b>{lab.time}</b></div><form className='flagbox' onSubmit={submit}><Flag/><b>SUBMIT FLAG</b><input value={flag} onChange={e=>setFlag(e.target.value)} placeholder='SG{...}'/><button>VERIFY FLAG</button>{msg&&<p className={solved?'ok':''}>{solved&&<CheckCircle2 size={15}/>} {msg}</p>}</form></aside></div></main>}
