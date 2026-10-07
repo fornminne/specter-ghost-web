@@ -1,0 +1,3 @@
+Contact: https://github.com/fornminne/specter-ghost-web/security
+Canonical: https://specterghost.com/.well-known/security.txt
+Policy: https://github.com/fornminne/specter-ghost-web/blob/main/SECURITY.md
