@@ -1,0 +1,40 @@
+name: Deploy SPECTER.GHOST Lambda
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/index.mjs'
+      - '.github/workflows/deploy-lambda.yml'
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: specter-ghost-lambda
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production-lambda
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify backend exists
+        run: test -s backend/index.mjs
+      - name: Configure short-lived AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-2
+          role-session-name: specter-ghost-deploy
+      - name: Package Lambda
+        run: |
+          mkdir -p dist
+          cd backend
+          zip -j ../dist/lambda.zip index.mjs
+      - name: Deploy Lambda code only
+        run: |
+          aws lambda update-function-code \
+            --function-name specter-ghost-verify \
+            --zip-file fileb://dist/lambda.zip \
+            --region us-east-2
+          aws lambda wait function-updated --function-name specter-ghost-verify --region us-east-2
