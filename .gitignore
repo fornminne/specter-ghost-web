@@ -1,5 +1,8 @@
 node_modules
 .next
+__pycache__/
+*.py[cod]
+.venv/
 out
 .env*
 !.env.example

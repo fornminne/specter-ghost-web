@@ -31,4 +31,4 @@ Keep public site on Amplify static. A self-hosted operator may separately deploy
 
 ## Current status
 
-Planning and source inventory only. The above ten modules are not yet implemented as playable pages.
+The ten guided modules are playable offline lessons under `public/labs/`. Juice Shop and the GPL pentest labs stay reference material and are not copied into the MIT portal.

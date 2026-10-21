@@ -2,7 +2,7 @@
 
 ## Control plane
 
-The Next.js application is the public SPECTER.GHOST Community Edition portal. AWS Amplify can host this layer. It serves the catalog, learning paths, challenge pages, health endpoints, and flag validation.
+AWS Amplify publishes the static tree in `public/` (`amplify.yml` uses that directory and does not run Next.js). The Next.js application in `src/` is an unpublished catalog and must not be exposed until its framework release is patched.
 
 ## Range plane
 
@@ -26,4 +26,4 @@ Challenge containers should use an internal range network and have no unrestrict
 
 ## Flags
 
-The portal validates submitted flags against SHA-256 digests. This keeps plaintext answers out of browser bundles. Public hashes are not intended to be a high-security secret store; production operators may replace the validator with per-instance flags.
+Schema-backed challenges store a SHA-256 digest in `specter.json`. Browser labs still include the training marker inside the evidence a learner is meant to inspect. Published HTML must not add a `data-answer` attribute or any other machine-readable copy of the flag. The static lab form sends the submitted string to the training verifier and stores only completion in the browser.
