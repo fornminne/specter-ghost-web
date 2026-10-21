@@ -33,3 +33,5 @@ The reaper destroys running instances when their TTL expires.
 ## Trust model
 
 The public portal must never accept an arbitrary image name, host, command, port, or Docker option from the client. Challenge deployment is selected from a server-side allowlist generated from reviewed manifests.
+
+The reference image runs as the unprivileged `specter` user. The default Compose file does not mount the Docker socket and does not start the controller. Dry-run mode can be called without a token. Setting `SPECTER_DRY_RUN=0` without `SPECTER_RANGE_TOKEN` makes every `/v1` route return 503. When the token is set, clients must send `Authorization: Bearer <token>`. `/health` stays unauthenticated.
