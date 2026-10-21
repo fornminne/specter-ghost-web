@@ -1,0 +1,17 @@
+# Applied by AWS Amplify Hosting from the repository root.
+# This file is not part of the published public/ artifact.
+customHeaders:
+  - pattern: "**/*"
+    headers:
+      - key: Strict-Transport-Security
+        value: "max-age=31536000; includeSubDomains"
+      - key: X-Content-Type-Options
+        value: nosniff
+      - key: X-Frame-Options
+        value: DENY
+      - key: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - key: Permissions-Policy
+        value: "camera=(), microphone=(), geolocation=()"
+      - key: Content-Security-Policy
+        value: "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://ptej5ssp2e.execute-api.us-east-2.amazonaws.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"

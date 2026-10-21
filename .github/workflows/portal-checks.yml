@@ -1,0 +1,33 @@
+name: Portal checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm run check:challenges
+      - run: npm run check:schema
+      - run: npm run check:public
+      - run: npm run build
+  # Fails while next@14.2.33 is inside the critical advisory range.
+  # Amplify does not execute Next; do not clear this by switching the publish path.
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=critical
