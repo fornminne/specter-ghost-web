@@ -16,6 +16,6 @@ Challenge targets must be intentionally vulnerable training systems. Do not subm
 
 1. Fork the repository.
 2. Add or modify one focused challenge/platform feature.
-3. Run `npm run check:challenges`.
+3. Run `npm run check:challenges`, `npm run check:schema`, and `npm run check:public`.
 4. Run `npm run build`.
 5. Describe the learning objective and isolation assumptions in the PR.
