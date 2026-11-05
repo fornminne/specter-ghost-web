@@ -1,0 +1,9 @@
+# Merge this route into your existing specterghost.com Caddy site block.
+# Do not replace the existing website configuration.
+specterghost.com {
+  @mcp path /mcp /mcp/*
+  handle @mcp {
+    reverse_proxy 127.0.0.1:8787
+  }
+  # Existing site routes must be preserved here.
+}
