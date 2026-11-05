@@ -1,0 +1,29 @@
+[Unit]
+Description=SPECTER-GHOST read-only MCP
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=spectermcp
+Group=spectermcp
+WorkingDirectory=/opt/specter-ghost-web/mcp
+EnvironmentFile=/etc/specter-ghost-mcp.env
+ExecStart=/usr/bin/node /opt/specter-ghost-web/mcp/server.mjs
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+CapabilityBoundingSet=
+LockPersonality=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
